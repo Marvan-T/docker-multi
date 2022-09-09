@@ -5,7 +5,7 @@ services:
   - docker #we need docker installed
 
 before_install: # series of commands to execute before we run the tests (think setup before doing something)
-  - docker build -t augmart/dev-client -f Dockerfile.dev ./client 
+  - docker build -t augmart/dev-client -f ./client/Dockerfile.dev ./client #have to provide a relative path 
 
 scripts: # commands that should run to do what you need to do (in this case running our tests)
   - docker run -e CI=true augmart/dev-client npm run test 
