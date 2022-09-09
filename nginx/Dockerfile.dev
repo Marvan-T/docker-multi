@@ -1,0 +1,10 @@
+FROM nginx
+
+#if you specify a file it will get overwritten as we are doing here
+COPY ./default.conf /etc/nginx/conf.d/default.conf 
+
+
+# configuration is coppied from conf.d directory
+# include /etc/nginx/conf.d/*.conf; (nginx image)
+
+#if you don't specify a default command inside a dockerfile then the default command of the parent "from" will take precedence

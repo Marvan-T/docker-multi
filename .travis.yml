@@ -1,0 +1,17 @@
+language: generic #some new requirenemnt in travis
+
+sudo: required # we need super user privileages
+services: 
+  - docker #we need docker installed
+
+before_install: # series of commands to execute before we run the tests (think setup before doing something)
+  - docker build -t augmart/dev-client -f Dockerfile.dev ./client 
+
+scripts: # commands that should run to do what you need to do (in this case running our tests)
+  - docker run -e CI=true augmart/dev-client npm run test 
+
+after_success: #when the build is passing (status code 0) crete the production images of our projects
+  - docker build -t augmart/multi-api ./api 
+  - docker build -t augmart/multi-client ./client 
+  - docker build -t augmart/multi-nginx ./nginx 
+  - docker build -t augmart/multi-worker./worker 
