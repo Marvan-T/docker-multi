@@ -1,6 +1,6 @@
-language: generic #some new requirenemnt in travis
+language: generic #some new requirement in travis
 
-sudo: required # we need super user privileages
+sudo: required # we need super user privileges
 services: 
   - docker #we need docker installed
 

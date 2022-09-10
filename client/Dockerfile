@@ -10,7 +10,7 @@ RUN npm run build
 FROM nginx 
 
 #for old aws elastic beanstalk 
-EXPOSE 3000 
+# EXPOSE 3000 
 
 #overwrite the default configuration
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
