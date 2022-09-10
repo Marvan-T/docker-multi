@@ -15,3 +15,12 @@ after_success: #when the build is passing (status code 0) crete the production i
   - docker build -t augmart/multi-client ./client 
   - docker build -t augmart/multi-nginx ./nginx 
   - docker build -t augmart/multi-worker./worker 
+
+  #login to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  #push the images to docker hub
+  - docker push augmart/multi-api 
+  - docker push augmart/multi-client 
+  - docker push augmart/mutli-nginx 
+  - docker push augmart/multi-worker 
