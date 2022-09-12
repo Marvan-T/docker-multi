@@ -24,3 +24,15 @@ after_success: #when the build is passing (status code 0) crete the production i
   - docker push augmart/multi-client 
   - docker push augmart/multi-nginx 
   - docker push augmart/multi-worker 
+
+deploy:
+  provider: elasticbeanstalk #automatically set config to deploy to elasticbeanstalk
+  region: "eu-west-2" #region of our elastic beanstalk instance
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-290680790199" #travis zip our project and dump it here
+  bucket_path: "docker-multi" #path to dump (folder), no folder by default
+  on:
+    branch: master # only master branch
+  access_key_id: $AWS_ACCESS_KEY #referring to environment variables that we set up
+  secret_access_key: $AWS_SECRET_KEY 
