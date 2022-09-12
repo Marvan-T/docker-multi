@@ -4,6 +4,7 @@ services:
     api: 
       image: "augmart/multi-api"
       hostname: api #defines a custom host name for the container
+      mem_limit: 128m #this is how you specify the memory limit (128 megabytes)
       environment: 
         - REDIS_HOST=$REDIS_HOST #elastic beanstalk environment variables
         - REDIS_PORT=$REDIS_PORT
@@ -15,15 +16,18 @@ services:
     client: 
       image: "augmart/multi-client"
       hostname: client 
+      mem_limit: 128m
     worker:  
       image: "augmart/multi-worker"
       hostname: worker
+      mem_limit: 128m
       environment:
         - REDIS_HOST=$REDIS_HOST
         - REDIS_PORT=$REDIS_PORT
     nginx:  
       image: "augmart/multi-nginx"
-      hostname: nginx 
+      hostname: nginx
+      mem_limit: 128m 
       ports: 
         - "80:80"
       depends_on: 
